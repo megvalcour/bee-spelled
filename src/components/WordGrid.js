@@ -85,7 +85,7 @@ function WordGrid(props) {
                 </div>
                 <div className="word-and-button-group">
                     <p className="word">{lettersClicked.join("")}</p>
-                    <button onClick={() => submitWord(lettersClicked.join(""))}>Send Word</button>
+                    <button onClick={() => submitWord(lettersClicked.join(""))}>Try Word</button>
                 </div>
             </div>
             { listOfSuccessfulWords.length > 0 &&
