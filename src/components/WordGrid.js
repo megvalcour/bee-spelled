@@ -31,18 +31,18 @@ function WordGrid(props) {
     async function submitWord(word){
         if(listOfSuccessfulWords.includes(word)){
             alert("Bzzzt! " + word + " was already used. No cheating!" )
-            return
-
-        }
-        let response = await fetch("https://api.datamuse.com/words?sp="+word+"&md=d")
-        let wordData = await response.json()
-        if (wordData.length > 0 && wordData[0].defs !== undefined) {
-            console.log("Results: ", wordData)
-            addPoints(word)
         }
         else {
-            console.log("Not a word!")
-            alert("Bzzzt! " + word + " is not a word. Try again!" )
+            let response = await fetch("https://api.datamuse.com/words?sp="+word+"&md=d")
+            let wordData = await response.json()
+            if (wordData.length > 0 && wordData[0].defs !== undefined) {
+                console.log("Results: ", wordData)
+                addPoints(word)
+            }
+            else {
+                console.log("Not a word!")
+                alert("Bzzzt! " + word + " is not a word. Try again!" )
+            }
         }
         updateKeysClicked([])
         updateLettersClicked([])
