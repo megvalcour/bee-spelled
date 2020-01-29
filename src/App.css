@@ -62,6 +62,7 @@
 .score-table {
     border: 3px solid #ffd700;
     margin: 2em;
+    font-size: .75em;
 }
 
 .score-list {

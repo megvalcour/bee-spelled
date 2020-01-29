@@ -29,9 +29,9 @@ function WordGrid(props) {
     }
 
     async function submitWord(word){
-        let response = await fetch("https://api.datamuse.com/words?sp="+word)
+        let response = await fetch("https://api.datamuse.com/words?sp="+word+"&md=d")
         let wordData = await response.json()
-        if (wordData.length > 0) {
+        if (wordData.length > 0 && wordData[0].defs !== undefined) {
             console.log("Results: ", wordData)
             addPoints(word)
         }

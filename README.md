@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BeeSpelled
+
+## Under Development
+
+This project is my first stab at a React app, bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is under very heavy development.
 
 ## Available Scripts
 
