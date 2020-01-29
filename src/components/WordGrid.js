@@ -13,9 +13,9 @@ function WordGrid(props) {
 
     function handleLetterClick(letterToAdd, letterKey){
         if(keysClicked.includes(letterKey)){
-            let index = keysClicked.indexOf(letterKey)
-            updateKeysClicked(keysClicked.splice(index, 1))
-            updateLettersClicked(lettersClicked.splice(index, 1))
+            var keyIndex = keysClicked.indexOf(letterKey)
+            updateKeysClicked(keysClicked.filter((element)=>{return element !== letterKey}))
+            updateLettersClicked(lettersClicked.filter((element, index, array)=>{return index !== keyIndex}))
         }
         else {
             updateLettersClicked(lettersClicked.concat([letterToAdd]))
