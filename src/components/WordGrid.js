@@ -40,14 +40,19 @@ function WordGrid(props) {
             if (wordData.length > 0) {
                 console.log("Results: ", wordData)
                 addPoints(word)
+                updateKeysClicked([])
+                updateLettersClicked([])
             }
             else {
-                console.log("Not a word!")
                 updateModal(true)            
             }
         }
+    }
+
+    function updateAfterFailure(){
         updateKeysClicked([])
         updateLettersClicked([])
+        updateModal(false)
     }
     
     // Renders the list of grid items
@@ -84,7 +89,7 @@ function WordGrid(props) {
             {showWrongWordModal === true && 
                 <BaseModal 
                     isIntroModal={false}
-                    onClose={updateModal(false)}
+                    onClose={updateAfterFailure}
                     word={lettersClicked}
                 />
             }
@@ -95,11 +100,11 @@ function WordGrid(props) {
                 <div className="word-and-button-group">
                     <p className="word">{lettersClicked.join("")}</p>
                     <button className="standard-button" onClick={() => submitWord(lettersClicked.join(""))}>Try Word</button><br/>
-                    <button className="link-button" onClick={props.endGame}>Reset Game</button>
                 </div>
             </div>
             { listOfSuccessfulWords.length > 0 &&
                 <aside className="score-table">
+                    <button className="link-button" onClick={props.endGame}>Reset Game</button>
                     <p><strong>Points</strong></p>
                     {pointList}
                     <p>Total Points: <strong>{totalPoints}</strong></p>

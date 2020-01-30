@@ -20,7 +20,7 @@ function BaseModal(props){
                         Sorry, {props.word} is not a word!
                     </p>
                     <p>
-                        <button className="standard-button" onClick={props.onClose}>Small</button>
+                        <button className="standard-button" onClick={props.onClose}>Try Again</button>
                     </p>
                 </div>
             )}
