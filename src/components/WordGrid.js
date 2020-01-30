@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BaseModal from './BaseModal.js';
 import WordSquare from './WordSquare';
 import PointRecord from './PointRecord';
 
@@ -10,6 +11,7 @@ function WordGrid(props) {
     const [keysClicked, updateKeysClicked] = useState([])
     const [listOfSuccessfulWords, addWordToList] = useState([])
     const [totalPoints, updatePoints] = useState(0)
+    const [showWrongWordModal, updateModal] = useState(false)
 
     function handleLetterClick(letterToAdd, letterKey){
         if(keysClicked.includes(letterKey)){
@@ -33,15 +35,15 @@ function WordGrid(props) {
             alert("Bzzzt! " + word + " was already used. No cheating!" )
         }
         else {
-            let response = await fetch("https://api.datamuse.com/words?sp="+word+"&md=d")
+            let response = await fetch("https://api.datamuse.com/words?ml="+word)
             let wordData = await response.json()
-            if (wordData.length > 0 && wordData[0].defs !== undefined) {
+            if (wordData.length > 0) {
                 console.log("Results: ", wordData)
                 addPoints(word)
             }
             else {
                 console.log("Not a word!")
-                alert("Bzzzt! " + word + " is not a word. Try again!" )
+                updateModal(true)            
             }
         }
         updateKeysClicked([])
@@ -70,22 +72,30 @@ function WordGrid(props) {
     // Inline style object to allow for custom row/column length
     const gridStyle = {
         display: 'grid',
-        rowGap: '.5em',
-        columnGap: '.5em',
+        rowGap: '.25em',
+        columnGap: '.25em',
         gridTemplateRows: 'repeat(' + props.rows + ', 1fr)',
-        gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)'
+        gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)',
     }
 
     // Render function for WordGrid
     return (
         <section className="board">
+            {showWrongWordModal === true && 
+                <BaseModal 
+                    isIntroModal={false}
+                    onClose={updateModal(false)}
+                    word={lettersClicked}
+                />
+            }
             <div className="play-area">
                 <div className="grid" style={gridStyle}>
                     {gridItems}
                 </div>
                 <div className="word-and-button-group">
                     <p className="word">{lettersClicked.join("")}</p>
-                    <button onClick={() => submitWord(lettersClicked.join(""))}>Try Word</button>
+                    <button className="standard-button" onClick={() => submitWord(lettersClicked.join(""))}>Try Word</button><br/>
+                    <button className="link-button" onClick={props.endGame}>Reset Game</button>
                 </div>
             </div>
             { listOfSuccessfulWords.length > 0 &&

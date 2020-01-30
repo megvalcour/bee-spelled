@@ -28,9 +28,7 @@
 }
 
 .grid-item {
-    padding: .6em .3em 0 .3em;
-    height: 2em;
-    width: 2em;
+    padding: .25em .6em .5em .6em;
     cursor: pointer;
     border-radius: 50%;
     transition: all .3s;
@@ -70,7 +68,7 @@
     list-style-position: inside;
 }
 
-button {
+.standard-button {
     background-color: #ffd700;
     color: #282c34;
     padding: 1em;
@@ -82,7 +80,40 @@ button {
     font-weight: 600;
 }
 
-button:hover {
+.standard-button:hover {
     transform: translateY(-5px);
     box-shadow: 0px 5px 5px black;
+}
+
+.link-button {
+    background-color: transparent;
+    border: none;
+    color: #ffd700;
+    cursor: pointer;
+}
+
+/* Modal */
+
+.overlay {
+    position: fixed; /* Stay in place */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto;
+    background-color: rgba(40, 44, 52, 0.549);
+}
+
+.modal {
+    width: 30vw;
+    height: 40vh;
+    color: #282c34;
+    background-color: #ffffff;
+    border: 1px solid #282c34;
+    border-radius: 5px;
+    box-shadow: 0px 5px 5px #000000;
 }
