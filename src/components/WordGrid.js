@@ -87,11 +87,14 @@ function WordGrid(props) {
     return (
         <section className="board">
             {showWrongWordModal === true && 
-                <BaseModal 
-                    isIntroModal={false}
-                    onClose={updateAfterFailure}
-                    word={lettersClicked}
-                />
+                <BaseModal>
+                    <p>
+                        Sorry, {lettersClicked} is not a word!
+                    </p>
+                    <p>
+                        <button className="standard-button" onClick={updateAfterFailure}>Try Again</button>
+                    </p>
+                </BaseModal>
             }
             <div className="play-area">
                 <div className="grid" style={gridStyle}>

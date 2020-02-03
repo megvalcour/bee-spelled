@@ -19,12 +19,16 @@ function App() {
             <h1>BeeSpelled</h1>
 
             { size === 0 ? (
-                    <BaseModal 
-                        isIntroModal={true}
-                        onSmall={()=>{updateSize(4)}}
-                        onMedium={()=>{updateSize(6)}}
-                        onLarge={()=>{updateSize(8)}}
-                    />
+                <BaseModal>
+                    <p>
+                        Choose your board!
+                    </p>
+                    <p>
+                        <button className="standard-button" onClick={() => {updateSize(4)}}>Small</button>
+                        <button className="standard-button" onClick={() => {updateSize(6)}}>Medium</button>
+                        <button className="standard-button" onClick={() => {updateSize(8)}}>Large</button>
+                    </p>
+                </BaseModal>
             ) : (
                 <WordGrid 
                     rows={size}
