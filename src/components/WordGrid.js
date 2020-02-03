@@ -7,27 +7,27 @@ import PointRecord from './PointRecord';
 function WordGrid(props) {
 
     // Handling state
-    const [lettersClicked, updateLettersClicked] = useState([])
-    const [keysClicked, updateKeysClicked] = useState([])
-    const [listOfSuccessfulWords, addWordToList] = useState([])
-    const [totalPoints, updatePoints] = useState(0)
-    const [showWrongWordModal, updateModal] = useState(false)
+    const [lettersClicked, setLettersClicked] = useState([])
+    const [keysClicked, setKeysClicked] = useState([])
+    const [listOfSuccessfulWords, setListOfSuccessfulWords] = useState([])
+    const [totalPoints, setTotalPoints] = useState(0)
+    const [showModal, setShowModal] = useState(false)
 
     function handleLetterClick(letterToAdd, letterKey){
         if(keysClicked.includes(letterKey)){
             var keyIndex = keysClicked.indexOf(letterKey)
-            updateKeysClicked(keysClicked.filter((element)=>{return element !== letterKey}))
-            updateLettersClicked(lettersClicked.filter((element, index, array)=>{return index !== keyIndex}))
+            setKeysClicked(keysClicked.filter((element)=>{return element !== letterKey}))
+            setLettersClicked(lettersClicked.filter((element, index, array)=>{return index !== keyIndex}))
         }
         else {
-            updateLettersClicked([...lettersClicked,letterToAdd])
-            updateKeysClicked([...keysClicked,letterKey])
+            setLettersClicked([...lettersClicked,letterToAdd])
+            setKeysClicked([...keysClicked,letterKey])
         }
     }
 
     function addPoints(word){
-        addWordToList([...listOfSuccessfulWords,word])
-        updatePoints(totalPoints + word.length)
+        setListOfSuccessfulWords([...listOfSuccessfulWords,word])
+        setTotalPoints(totalPoints + word.length)
     }
 
     async function submitWord(word){
@@ -40,19 +40,19 @@ function WordGrid(props) {
             if (wordData.length > 0) {
                 console.log("Results: ", wordData)
                 addPoints(word)
-                updateKeysClicked([])
-                updateLettersClicked([])
+                setKeysClicked([])
+                setLettersClicked([])
             }
             else {
-                updateModal(true)            
+                setShowModal(true)            
             }
         }
     }
 
     function updateAfterFailure(){
-        updateKeysClicked([])
-        updateLettersClicked([])
-        updateModal(false)
+        setKeysClicked([])
+        setLettersClicked([])
+        setShowModal(false)
     }
     
     // Renders the list of grid items
@@ -86,7 +86,7 @@ function WordGrid(props) {
     // Render function for WordGrid
     return (
         <section className="board">
-            {showWrongWordModal === true && 
+            {showModal === true && 
                 <BaseModal>
                     <p>
                         Sorry, {lettersClicked} is not a word!

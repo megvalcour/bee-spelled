@@ -6,7 +6,7 @@ import './App.css';
 function App() {
 
     // App state
-    const [size, updateSize] = useState(0)
+    const [size, setSize] = useState(0)
 
     // Produces an array (of n length) of random letters
     function generateRandomLetters(numberOfLetters) {
@@ -24,9 +24,9 @@ function App() {
                         Choose your board!
                     </p>
                     <p>
-                        <button className="standard-button" onClick={() => {updateSize(4)}}>Small</button>
-                        <button className="standard-button" onClick={() => {updateSize(6)}}>Medium</button>
-                        <button className="standard-button" onClick={() => {updateSize(8)}}>Large</button>
+                        <button className="standard-button" onClick={() => {setSize(4)}}>Small</button>
+                        <button className="standard-button" onClick={() => {setSize(6)}}>Medium</button>
+                        <button className="standard-button" onClick={() => {setSize(8)}}>Large</button>
                     </p>
                 </BaseModal>
             ) : (
@@ -34,7 +34,7 @@ function App() {
                     rows={size}
                     columns={size}
                     letterArray={generateRandomLetters(size*size)}
-                    endGame={()=>{updateSize(0)}}
+                    endGame={()=>{setSize(0)}}
                 />
             )}
         </header>
