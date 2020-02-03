@@ -6,6 +6,8 @@ import PointRecord from './PointRecord';
 
 function WordGrid(props) {
 
+    const { letterArray, rows, columns, endGame } = props
+
     // Handling state
     const [lettersClicked, setLettersClicked] = useState([])
     const [keysClicked, setKeysClicked] = useState([])
@@ -56,7 +58,7 @@ function WordGrid(props) {
     }
     
     // Renders the list of grid items
-    const gridItems = props.letterArray.map((letter, index) =>
+    const gridItems = letterArray.map((letter, index) =>
         <WordSquare 
             letter={letter} 
             letterIndex={index} 
@@ -79,8 +81,8 @@ function WordGrid(props) {
         display: 'grid',
         rowGap: '.25em',
         columnGap: '.25em',
-        gridTemplateRows: 'repeat(' + props.rows + ', 1fr)',
-        gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)',
+        gridTemplateRows: 'repeat(' + rows + ', 1fr)',
+        gridTemplateColumns: 'repeat(' + columns + ', 1fr)',
     }
 
     // Render function for WordGrid
@@ -107,7 +109,7 @@ function WordGrid(props) {
             </div>
             { listOfSuccessfulWords.length > 0 &&
                 <aside className="score-table">
-                    <button className="link-button" onClick={props.endGame}>Reset Game</button>
+                    <button className="link-button" onClick={endGame}>Reset Game</button>
                     <p><strong>Points</strong></p>
                     {pointList}
                     <p>Total Points: <strong>{totalPoints}</strong></p>

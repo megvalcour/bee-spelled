@@ -1,8 +1,10 @@
 import React from 'react';
 
 function PointRecord(props){
+    const { word, points } = props
+
     return (
-        <p>{ props.word } <span className="points">({ props.points })</span></p>
+        <p>{ word } <span className="points">({ points })</span></p>
     )
 }
 

@@ -1,9 +1,11 @@
 import React from 'react';
 
 function WordSquare(props){
+    const {letterIndex, letter, onClick, isClicked } = props
+    
     return (
-        <div key={props.letterIndex} onClick={props.onClick} className={props.isClicked ? 'grid-item clicked-square' : 'grid-item'}>
-            {props.letter}
+        <div key={ letterIndex } onClick={ onClick } className={ isClicked ? 'grid-item clicked-square' : 'grid-item' }>
+            { letter }
         </div>
     )
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 
 function BaseModal(props){
+    const { children } = props
     return (
         <div className="overlay">
             <div className="modal">
-                {props.children}
+                {children}
             </div>
         </div>
     ) 
