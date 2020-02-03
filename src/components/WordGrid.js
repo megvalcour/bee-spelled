@@ -20,13 +20,13 @@ function WordGrid(props) {
             updateLettersClicked(lettersClicked.filter((element, index, array)=>{return index !== keyIndex}))
         }
         else {
-            updateLettersClicked(lettersClicked.concat([letterToAdd]))
-            updateKeysClicked(keysClicked.concat([letterKey]))
+            updateLettersClicked([...lettersClicked,letterToAdd])
+            updateKeysClicked([...keysClicked,letterKey])
         }
     }
 
     function addPoints(word){
-        addWordToList(listOfSuccessfulWords.concat([word]))
+        addWordToList([...listOfSuccessfulWords,word])
         updatePoints(totalPoints + word.length)
     }
 
